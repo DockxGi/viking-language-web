@@ -9,6 +9,12 @@
       <input type="text" size="20" v-model="userText">
       <button class="submit-button" @click="checkAnswer(userText)">Submit</button>
     </div>
+    <div v-if="translations" class="translations">
+      <span class="translation" v-for="translation in translations" :key="translation.text">{{translation.text}}</span>
+    </div>
+    <div v-else class="translations">
+      <span class="translation">?</span>
+    </div>
   </div>
 </template>
 
@@ -19,7 +25,8 @@ export default {
   data() {
     return {
       userText: null,
-      correct: null
+      correct: null,
+      translations: null
     }
   },
   name: "TranslateSingleWordToEnglish",
@@ -28,7 +35,6 @@ export default {
       let _this = this;
 
       function matchesEnglishTranslation(translations, userText) {
-        console.log("dockxdockx", translations);
         for(let translation of translations){
           if (translation.languageCode === 'en'&& userText === translation.text){
             return true;
@@ -39,6 +45,8 @@ export default {
 
       function onTranslationsReceived(translations) {
         let correct = matchesEnglishTranslation(translations, userText);
+        _this.translations = translations;
+
         console.info("Correct Answer: ", correct);
         _this.correct = correct;
       }
@@ -80,5 +88,14 @@ export default {
   .submit-button {
     margin-left: 10px;
     border-radius: 10px;
+  }
+  .translations {
+    font-size: 20px;
+  }
+  .translation {
+    padding: 3px;
+    border: solid 1px;
+    margin-right: 2px;
+    background-color: yellow;
   }
 </style>
