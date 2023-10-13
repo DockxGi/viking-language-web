@@ -1,6 +1,22 @@
 <script setup>
+import { ref, computed } from 'vue'
 import NavBar from './components/NavBar.vue'
-import TranslateToDutch from './components/TranslateToEnglish.vue'
+import TranslateToEnglish from './components/TranslateToEnglish.vue'
+import ConjugateWeakVerb from "./components/ConjugateWeakVerb.vue";
+
+const routes = {
+  '/exercise1': TranslateToEnglish,
+  '/exercise2': ConjugateWeakVerb
+}
+const currentPath = ref(window.location.hash)
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+})
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/']
+})
 </script>
 
 <template>
@@ -9,7 +25,7 @@ import TranslateToDutch from './components/TranslateToEnglish.vue'
 
   <main>
     <NavBar></NavBar>
-    <TranslateToDutch></TranslateToDutch>
+    <component :is="currentView" />
   </main>
 </template>
 
