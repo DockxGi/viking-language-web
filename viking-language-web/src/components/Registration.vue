@@ -61,6 +61,19 @@ export default {
         this.errors.push('lastName should not be blank')
       }
     },
+    validateEmail() {
+      if (!this.email) {
+        this.errors.push("email is required");
+      } else if (this.email.length < 1) {
+        this.errors.push('email should not be blank');
+      } else {
+        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let valid = re.test(this.email);
+        if (!valid){
+          this.errors.push('email is not valid')
+        }
+      }
+    },
     checkForm(e) {
       e.preventDefault();
 
@@ -68,6 +81,7 @@ export default {
 
       this.validateFirstName();
       this.validateLastName();
+      this.validateEmail();
     }
   }
 }
