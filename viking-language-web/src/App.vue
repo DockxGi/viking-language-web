@@ -3,10 +3,12 @@ import { ref, computed } from 'vue'
 import NavBar from './components/NavBar.vue'
 import TranslateToEnglish from './components/TranslateToEnglish.vue'
 import ConjugateWeakVerb from "./components/ConjugateWeakVerb.vue";
+import Registration from "./components/Registration.vue";
 
 const routes = {
   '/exercise1': TranslateToEnglish,
-  '/exercise2': ConjugateWeakVerb
+  '/exercise2': ConjugateWeakVerb,
+  '/registration': Registration
 }
 const currentPath = ref(window.location.hash)
 

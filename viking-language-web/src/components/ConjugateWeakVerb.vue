@@ -1,5 +1,5 @@
 <template>
-  <h2>Exercise 1</h2>
+  <h2>Exercise 2</h2>
   <p class="task">
     Conjugate weak old norse verbs.
 

@@ -4,6 +4,8 @@
     <span class="nav-label">Exercises:</span>
     <a class="short-link" href="#/exercise1">1</a>
     <a class="short-link" href="#/exercise2">2</a>
+    <span class="nav-label">Account:</span>
+    <a class="short-link" href="#/registration">register</a>
   </div>
 </template>
 
